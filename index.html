@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffd900">
+  <meta name="description" content="METAGZ — Digital ecosystem, tools, services, communities, and Telegram bots.">
+  <title>METAGZ — Digital Ecosystem</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root{--yellow:#ffdc00;--yellow2:#ffe96a;--black:#090909;--white:#fff;--ink:#111;--muted:#666;--line:#111;--shadow:0.3125rem 0.3125rem 0 #080808}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--yellow);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+    button,a{font:inherit} button{cursor:pointer}
+    .site{min-height:100vh;background-color:var(--yellow);background-image:radial-gradient(#111 0.0625rem,transparent 0.09375rem);background-size:1.75rem 1.75rem}
+    .topbar{height:4.75rem;background:#fff;border-bottom:0.3125rem solid #111;display:flex;align-items:center;justify-content:space-between;padding:0 max(1.125rem,calc((100% - 73.75rem)/2));position:sticky;top:0;z-index:20}
+    .brand{display:inline-flex;align-items:center;gap:0.5625rem;background:var(--yellow);border:0.25rem solid #111;box-shadow:0.25rem 0.25rem 0 #111;padding:0.625rem 0.875rem;font-weight:1000;font-size:clamp(1.125rem,3vw,1.5625rem);letter-spacing:-0.0625rem;transform:skew(-3deg)}
+    .brand-mark{font-size:1.375rem}.desktop-nav{display:flex;gap:0.5625rem}.nav-btn{border:0.1875rem solid #111;background:#fff;box-shadow:0.1875rem 0.1875rem 0 #111;padding:0.625rem 0.9375rem;font-weight:900;text-transform:uppercase}.nav-btn.active,.nav-btn:hover{background:var(--yellow)}
+    .nav-btn.dark{background:#090909;color:var(--yellow);padding-inline:1.25rem}
+    .menu-toggle{display:none;border:0.1875rem solid #111;background:#fff;box-shadow:0.1875rem 0.1875rem 0 #111;width:2.8125rem;height:2.625rem;font-size:1.375rem;font-weight:900}
+    main{max-width:73.75rem;margin:auto;padding:2rem 1.375rem 6.875rem}
+    .page{display:none;animation:appear .25s ease}.page.active{display:block}@keyframes appear{from{opacity:.3;transform:translateY(0.5rem)}to{opacity:1;transform:none}}
+    .eyebrow{display:inline-block;background:#fff;border:0.1875rem solid #111;box-shadow:0.1875rem 0.1875rem 0 #111;padding:0.5rem 0.8125rem;font-size:0.75rem;font-weight:900;letter-spacing:0.0625rem;text-transform:uppercase;transform:rotate(-1deg)}
+    .hero{display:grid;grid-template-columns:1.08fr .92fr;gap:1.75rem;align-items:center;padding:1.625rem 0 2.375rem}
+    h1{font-size:clamp(3rem,8vw,5.875rem);line-height:.88;letter-spacing:-0.3125rem;margin:1.375rem 0 1.125rem;font-weight:1000;text-transform:uppercase}
+    h1 .highlight{display:inline-block;background:#fff;border:0.25rem solid #111;box-shadow:0.375rem 0.375rem 0 #111;padding:0.5rem 0.8125rem;margin:0.25rem 0}
+    h1 .yellowline{display:inline-block;background:var(--yellow);border:0.25rem solid #111;box-shadow:0.375rem 0.375rem 0 #111;padding:0.5rem 0.8125rem}
+    .lead{font-size:1.0625rem;line-height:1.65;max-width:35rem;font-weight:600}
+    .actions{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.5rem}
+    .cta{display:inline-flex;align-items:center;justify-content:center;gap:0.625rem;text-decoration:none;border:0.1875rem solid #111;background:#080808;color:var(--yellow);box-shadow:0.25rem 0.25rem 0 #111;padding:0.875rem 1.1875rem;font-weight:1000;text-transform:uppercase}
+    .cta.light{background:#fff;color:#111}.cta:hover,.product-btn:hover{transform:translate(-0.125rem,-0.125rem);box-shadow:0.375rem 0.375rem 0 #111}
+    .showcase{border:0.25rem solid #111;background:#fff;box-shadow:0.5rem 0.5rem 0 #111;transform:rotate(1deg);padding:0.875rem;position:relative}
+    .showcase-top{background:#111;color:var(--yellow);min-height:11.5625rem;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden}
+    .showcase-top:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 1.125rem,rgba(255,220,0,.13) 1.125rem 1.5625rem)}
+    .big-logo{position:relative;font-size:clamp(4.375rem,10vw,7.5rem);font-weight:1000;color:var(--yellow);text-shadow:0.3125rem 0.3125rem #000,-0.125rem -0.125rem #fff}
+    .showcase-info{text-align:center;padding:1.25rem 0.625rem 0.625rem}.showcase-info h2{margin:0;font-size:1.5625rem}.showcase-info p{color:#555;font-weight:700;letter-spacing:0.125rem}
+    .tag{display:inline-block;background:var(--yellow);border:0.125rem solid #111;padding:0.4375rem 0.625rem;font-weight:900;font-size:0.75rem}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:0.9375rem;margin:1.75rem 0 1.0625rem}
+    .section-title{font-size:clamp(1.4375rem,4vw,2rem);margin:0;background:#fff;border:0.1875rem solid #111;box-shadow:0.25rem 0.25rem 0 #111;padding:0.5625rem 0.875rem;text-transform:uppercase}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .card{background:#fff;border:0.1875rem solid #111;box-shadow:0.25rem 0.25rem 0 #111;padding:1.125rem;position:relative}
+    .card:after{content:"";position:absolute;right:0.625rem;top:0.625rem;width:0.625rem;height:0.625rem;border-radius:50%;background:#f33;border:0.125rem solid #111}
+    .iconbox{width:3.4375rem;height:3.4375rem;display:grid;place-items:center;background:var(--yellow);border:0.1875rem solid #111;font-size:1.6875rem;margin-bottom:0.75rem}
+    .card h3{font-size:1.1875rem;margin:0.25rem 0 0.5rem;text-transform:uppercase}.card p{color:#555;line-height:1.5;margin:0 0 0.875rem;font-size:0.875rem}
+    .text-link{color:#111;font-weight:900;text-decoration:none;border-bottom:0.125rem solid var(--yellow)}
+    .dark-panel{background:#090909;color:#fff;border:0.1875rem solid #111;box-shadow:0.3125rem 0.3125rem 0 #111;padding:1.375rem;margin-top:1.75rem}
+    .dark-panel h2{color:var(--yellow);margin:0 0 0.5rem;text-transform:uppercase}.dark-panel p{line-height:1.6;color:#ddd;margin-bottom:0}
+    .page-hero{background:#111;color:#fff;border:0.25rem solid #111;box-shadow:0.4375rem 0.4375rem 0 #111;padding:1.6875rem;margin:0.5rem 0 1.6875rem;position:relative;overflow:hidden}
+    .page-hero:after{content:"";position:absolute;right:-2.1875rem;top:-3.75rem;width:13.75rem;height:13.75rem;border:1.5625rem solid var(--yellow);border-radius:50%;opacity:.22}
+    .page-hero h1{font-size:clamp(2.375rem,7vw,4.25rem);letter-spacing:-0.1875rem;margin:0.875rem 0 0.625rem;color:var(--yellow)}
+    .page-hero p{max-width:42.5rem;line-height:1.6;color:#eee;margin:0}
+    .toolbar{display:flex;gap:0.625rem;flex-wrap:wrap;margin:1.125rem 0}
+    .search{flex:1;min-width:11.875rem;border:0.1875rem solid #111;background:#fff;padding:0.75rem 0.875rem;font-weight:700;outline:none}
+    .filter{border:0.1875rem solid #111;background:#fff;padding:0.625rem 0.8125rem;font-weight:900}.filter.active{background:#111;color:var(--yellow)}
+    .product-card{display:flex;flex-direction:column}.product-card .product-btn{margin-top:auto}
+    .price{font-weight:1000;font-size:1.125rem;margin:0 0 0.75rem}.product-btn{display:block;text-align:center;text-decoration:none;background:var(--yellow);color:#111;border:0.1875rem solid #111;box-shadow:0.1875rem 0.1875rem 0 #111;padding:0.625rem;font-weight:1000}
+    .list{display:grid;gap:0.75rem}.list-item{display:flex;align-items:center;gap:0.875rem;background:#fff;border:0.1875rem solid #111;box-shadow:0.1875rem 0.1875rem 0 #111;padding:0.8125rem;text-decoration:none;color:#111}
+    .list-item .iconbox{flex:0 0 3.25rem;margin:0}.list-item h3{margin:0 0 0.25rem;font-size:1rem}.list-item p{margin:0;color:#666;font-size:0.8125rem;line-height:1.4}.arrow{margin-left:auto;font-size:1.5625rem;font-weight:1000}
+    .status{margin-left:auto;background:#16a34a;color:#fff;border:0.125rem solid #111;padding:0.25rem 0.4375rem;font-size:0.625rem;font-weight:1000}
+    .country-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem}.country{display:flex;align-items:center;gap:0.8125rem;background:#fff;border:0.1875rem solid #111;box-shadow:0.1875rem 0.1875rem 0 #111;padding:0.875rem;text-decoration:none;color:#111}.flag{font-size:1.875rem}.country strong{display:block}.country small{color:#666}
+    .empty{display:none;background:#fff;border:0.1875rem dashed #111;padding:1.25rem;text-align:center;font-weight:800}
+    footer{background:#080808;color:#fff;text-align:center;padding:1.5625rem 0.9375rem;border-top:0.3125rem solid #111}footer strong{color:var(--yellow)}footer p{margin:0.4375rem 0;color:#ccc;font-size:0.8125rem}
+    .bottom-nav{display:none}
+    @media(max-width:47.5rem){
+      .topbar{height:4.1875rem;padding:0 0.9375rem}.desktop-nav{display:none}.menu-toggle{display:block}
+      .desktop-nav.open{display:grid;position:absolute;top:4.1875rem;left:0;right:0;background:#fff;border-bottom:0.25rem solid #111;padding:0.875rem;grid-template-columns:repeat(2,1fr);z-index:30}
+      .desktop-nav.open .nav-btn{padding:0.75rem}.desktop-nav.open .nav-btn.dark{grid-column:span 2}
+      main{padding:1.25rem 0.9375rem 6.5625rem}.hero{grid-template-columns:1fr;gap:1.5rem;padding-top:1.125rem}
+      h1{font-size:clamp(3rem,14vw,4.75rem);letter-spacing:-0.1875rem;margin:1.125rem 0}
+      .lead{font-size:0.9375rem}.showcase{max-width:32.5rem;width:94%;margin:0 auto}
+      .showcase-top{min-height:9.0625rem}.grid{grid-template-columns:repeat(2,1fr);gap:0.75rem}
+      .card{padding:0.875rem}.card h3{font-size:1rem}.card p{font-size:0.8125rem}
+      .page-hero{padding:1.3125rem}.page-hero h1{font-size:clamp(2.375rem,11vw,3.625rem)}
+      .country-grid{grid-template-columns:1fr}
+      .bottom-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;bottom:0;left:0;right:0;background:#080808;border-top:0.25rem solid #111;padding:0.5rem 0.25rem calc(0.5rem + env(safe-area-inset-bottom));z-index:40}
+      .bottom-nav button{border:0;border-right:0.0625rem solid #666;background:transparent;color:#fff;display:flex;flex-direction:column;align-items:center;gap:0.1875rem;font-size:0.625rem;font-weight:900;padding:0.1875rem 0}
+      .bottom-nav button:last-child{border:0}.bottom-nav button span:first-child{font-size:1.3125rem}.bottom-nav button.active{color:var(--yellow)}
+      footer{padding-bottom:6.5rem}
+    }
+    @media(max-width:24.375rem){.grid{grid-template-columns:1fr}.actions .cta{flex:1}.brand{font-size:1.125rem}.section-title{font-size:1.3125rem}}
+
+
+
+    /* CHAT GROUPS */
+
+    /* GROUP chat refinements based on the supplied VOID CHAT interaction reference;
+       visual identity intentionally replaced with METAGZ yellow / white / black. */
+    .chat-shell{border:3px solid #111;background:#fff;box-shadow:5px 5px 0 #111;display:flex;flex-direction:column;min-height:68vh;max-width:100%;overflow:hidden}
+    .chat-header{display:flex;align-items:center;justify-content:space-between;background:#ffdc00;color:#111;padding:.75rem .85rem;border-bottom:3px solid #111}
+    .chat-brand{display:flex;align-items:center;gap:.65rem;min-width:0}
+    .chat-avatar{width:2.5rem;height:2.5rem;display:grid;place-items:center;border:2px solid #111;background:#fff;font-size:1.05rem}
+    .chat-brand strong{display:block;font-size:.9rem;font-weight:1000;letter-spacing:.1em}
+    .chat-brand small{display:block;font-size:.57rem;font-weight:900;letter-spacing:.07em;margin-top:.15rem}
+    .chat-live-dot{display:inline-block;width:.42rem;height:.42rem;border-radius:50%;background:#168b35;margin-right:.25rem}
+    .chat-head-btn{width:2.2rem;height:2.2rem;border:2px solid #111;background:#111;color:#ffdc00}
+    .chat-topic{display:flex;align-items:center;gap:.6rem;padding:.65rem .8rem;background:#f4f4f4;border-bottom:2px solid #111;color:#111}
+    .chat-topic>i{font-size:1rem}.chat-topic div{flex:1;min-width:0}.chat-topic b{display:block;font-size:.73rem;font-weight:1000}.chat-topic small{display:block;color:#666;font-size:.62rem;margin-top:.1rem}.chat-topic>span{font-size:.55rem;font-weight:1000;background:#ffdc00;border:1px solid #111;padding:.25rem .4rem}
+    .chat-messages{display:flex;flex-direction:column;gap:.65rem;padding:.85rem;background-color:#fff;background-image:radial-gradient(#ddd .7px,transparent .7px);background-size:1rem 1rem;flex:1;min-height:22rem;max-height:64vh;overflow-y:auto;overscroll-behavior:contain}
+    .chat-message{position:relative;max-width:86%;align-self:flex-start;background:#fff;border:2px solid #111;box-shadow:2px 2px 0 #bbb;padding:.6rem .7rem;color:#111;overflow-wrap:anywhere}
+    .chat-message.mine{align-self:flex-end;background:#fff3a6;border-color:#111}
+    .chat-msg-meta{display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem}
+    .chat-msg-name{font-size:.62rem;font-weight:1000;color:#111;letter-spacing:.03em}
+    .chat-msg-time{font-size:.53rem;color:#777;margin-left:auto}
+    .chat-msg-text{font-size:.79rem;line-height:1.45;white-space:pre-wrap}
+    .chat-msg-media{display:block;max-width:100%;max-height:20rem;object-fit:contain;border:1px solid #111;margin:.35rem 0;background:#111}
+    .chat-msg-caption{font-size:.75rem;line-height:1.4;margin-top:.35rem;white-space:pre-wrap}
+    .chat-msg-audio-card{display:flex;align-items:center;gap:.55rem;min-width:min(17rem,66vw);padding:.4rem .1rem}
+    .chat-audio-play{width:2.35rem;height:2.35rem;flex:0 0 2.35rem;border:2px solid #111;background:#ffdc00;color:#111;display:grid;place-items:center;font-size:.85rem}
+    .chat-audio-main{flex:1;min-width:0}
+    .chat-wave{height:1.7rem;display:flex;align-items:center;gap:2px;overflow:hidden}
+    .chat-wave i{display:block;width:3px;min-width:2px;background:#111;border-radius:3px;opacity:.75}
+    .chat-wave i.played{background:#d59b00;opacity:1}
+    .chat-audio-meta{display:flex;justify-content:space-between;font-size:.55rem;color:#555;margin-top:.15rem}
+    .chat-msg-reply{border-left:3px solid #c18a00;background:#fff8d1;padding:.35rem .5rem;margin-bottom:.4rem;font-size:.62rem;color:#555;cursor:pointer}
+    .chat-msg-reply b{display:block;color:#111;font-size:.58rem;margin-bottom:.1rem}
+    .chat-msg-actions{display:flex;justify-content:flex-end;gap:.3rem;margin-top:.4rem}
+    .chat-msg-actions button{border:1px solid #111;background:#fff;color:#111;padding:.25rem .42rem;font-size:.58rem;font-weight:900}
+    .chat-poll{border:2px solid #111;padding:.55rem;margin-top:.35rem;background:#fff}
+    .chat-poll-title{font-size:.76rem;font-weight:1000;margin-bottom:.45rem}
+    .chat-poll-option{display:flex;justify-content:space-between;gap:.5rem;width:100%;text-align:left;padding:.45rem .5rem;margin-top:.3rem;border:1px solid #111;background:#fff;font-size:.68rem;color:#111}
+    .chat-poll-option.voted{background:#ffdc00;font-weight:900}
+    .chat-poll-option span{font-size:.58rem;color:#666;white-space:nowrap}
+    .chat-replying{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.45rem .75rem;background:#fff2a6;border-top:2px solid #111}
+    .chat-replying[hidden]{display:none}.chat-replying div{min-width:0}.chat-replying b{display:block;font-size:.58rem;letter-spacing:.06em}.chat-replying span{display:block;font-size:.65rem;color:#555;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.chat-replying button{border:0;background:transparent;font-size:1rem}
+    .chat-composer{border-top:3px solid #111;background:#fff;padding:.55rem .7rem calc(.6rem + env(safe-area-inset-bottom))}
+    .chat-tools{display:flex;gap:.45rem;margin-bottom:.45rem}.chat-tools button{width:2rem;height:2rem;border:1.5px solid #111;background:#ffdc00;color:#111;font-size:.8rem}
+    .chat-input-row{display:flex;align-items:flex-end;gap:.45rem}.chat-input-row textarea{flex:1;min-width:0;max-height:7rem;resize:none;border:2px solid #111;background:#fff;padding:.65rem .7rem;font:inherit;font-size:.82rem;line-height:1.35;color:#111;outline:none}.chat-send{width:2.65rem;height:2.65rem;flex:0 0 2.65rem;border:2px solid #111;background:#111;color:#ffdc00;font-size:.95rem}
+    .chat-compose-hint{display:flex;justify-content:space-between;font-size:.55rem;color:#777;padding:.35rem .1rem 0}.chat-typing{padding:0 .8rem;font-size:.62rem;color:#777;background:#fff}
+    .chat-empty{margin:auto;text-align:center;color:#555;font-size:.75rem;padding:2rem}.chat-empty i{font-size:2rem;color:#111;display:block;margin-bottom:.6rem}
+    .chat-preview-backdrop{position:fixed;inset:0;z-index:10020;background:#000b;display:none;align-items:center;justify-content:center;padding:1rem}
+    .chat-preview-backdrop.open{display:flex}.chat-preview-box{width:min(100%,28rem);max-height:90dvh;overflow:auto;background:#fff;border:3px solid #111;box-shadow:7px 7px 0 #111;color:#111}
+    .chat-preview-head{display:flex;align-items:center;justify-content:space-between;background:#ffdc00;border-bottom:3px solid #111;padding:.7rem .85rem;font-size:.8rem}
+    .chat-preview-head button{border:0;background:transparent;font-size:1rem}
+    .chat-preview-content{padding:.8rem;display:grid;gap:.5rem;max-height:50dvh;overflow:auto}
+    .chat-preview-content img,.chat-preview-content video{display:block;max-width:100%;max-height:42dvh;margin:auto;border:1px solid #111;object-fit:contain;background:#111}
+    #chatMediaCaption{display:block;width:calc(100% - 1.6rem);margin:0 .8rem .8rem;padding:.65rem;border:2px solid #111;font:inherit;font-size:.8rem;resize:vertical}
+    .chat-preview-actions{display:flex;justify-content:flex-end;gap:.5rem;padding:0 .8rem .8rem}
+    .chat-preview-actions button{padding:.6rem .85rem;border:2px solid #111;background:#fff;font-size:.68rem;font-weight:1000}
+    .chat-preview-actions #chatPreviewSend{background:#ffdc00;box-shadow:2px 2px 0 #111}
+    @media(max-width:47.5rem){.chat-shell{min-height:calc(100dvh - 11rem);margin:.2rem auto 1rem}.chat-messages{max-height:calc(100dvh - 19rem);min-height:15rem}.chat-message{max-width:92%}.chat-composer{position:relative}}
+    @media(max-width:47.5rem){body.keyboard-open .bottom-nav{transform:translateY(110%);pointer-events:none}.bottom-nav{transition:transform .15s ease}}
+
+    /* GLOBAL SELL — marketplace skin, no sidebar */
+    .global-sell-hero{background:#090909;color:#fff;border:3px solid #111;box-shadow:5px 5px 0 #111;padding:1.35rem 2%;overflow:hidden}
+    .global-sell-hero h1{font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.045em;color:#ffdc00;margin:.85rem 0 .55rem}
+    .global-sell-hero p{font-size:.88rem;max-width:42rem}
+    .gs-online{display:inline-flex;align-items:center;gap:.45rem;margin-top:1rem;padding:.38rem .65rem;border:1px solid #ffdc00;color:#ffdc00;font-size:.65rem;font-weight:1000;letter-spacing:.1em}
+    .gs-online span{width:.48rem;height:.48rem;border-radius:50%;background:#22c55e;box-shadow:0 0 .4rem #22c55e}
+    .gs-search-wrap{position:relative;margin:0 0 1rem}
+    .gs-search-wrap>i{position:absolute;left:1rem;top:50%;transform:translateY(-50%);z-index:1;color:#111}
+    .gs-search{width:100%;margin:0;background:#fff;border:3px solid #111;box-shadow:3px 3px 0 #111;padding:.8rem 1rem .8rem 2.7rem;color:#111;font-size:.9rem}
+    .gs-search::placeholder{color:#777;letter-spacing:0;text-transform:none}
+    .gs-card,.gs-products-card{background:#fff;border:3px solid #111;box-shadow:4px 4px 0 #111;padding:1rem;margin:0 0 1.2rem;position:relative}
+    .gs-section-title{display:flex;align-items:center;gap:.55rem;color:#111;font-size:.86rem;font-weight:1000;letter-spacing:.045em;margin-bottom:1rem}
+    .gs-section-title>i{width:2rem;height:2rem;display:grid;place-items:center;background:#ffdc00;border:2px solid #111}
+    .gs-section-title span{margin-left:auto;color:#777;font-size:.55rem;letter-spacing:.08em}
+    .gs-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+    .gs-field{display:block;color:#222;font-size:.65rem;font-weight:1000;letter-spacing:.07em;margin-bottom:.75rem}
+    .gs-field input,.gs-field textarea{display:block;width:100%;margin:.35rem 0 0;border:2px solid #111;border-radius:0;background:#fff;color:#111;padding:.7rem .75rem;font-size:.85rem;letter-spacing:0;box-shadow:2px 2px 0 #ddd}
+    .gs-field input::placeholder,.gs-field textarea::placeholder{color:#999;font-size:.78rem;letter-spacing:0;text-transform:none}
+    .gs-field textarea{resize:vertical;min-height:5rem}
+    .gs-contact-title{margin-top:.25rem;margin-bottom:.75rem;padding-top:.8rem;border-top:1px dashed #aaa}
+    .gs-submit{width:100%;border:3px solid #111;background:#ffdc00;color:#111;box-shadow:3px 3px 0 #111;padding:.85rem;font-size:.82rem;font-weight:1000;letter-spacing:.08em}
+    .gs-submit:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #111}
+    .gs-note{font-size:.68rem;color:#666;line-height:1.5;margin:.8rem 0 0}
+    .gs-note i{color:#111}
+    .gs-products-head{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+    .gs-products-head .gs-section-title{margin:0 0 .8rem}
+    .gs-count{font-size:.6rem;font-weight:1000;color:#555;white-space:nowrap}
+    .gs-filter-row{display:flex;gap:.45rem;overflow-x:auto;padding:.15rem .1rem .75rem}
+    .gs-filter{white-space:nowrap;border:2px solid #111;background:#fff;color:#111;padding:.42rem .7rem;font-size:.62rem;font-weight:1000}
+    .gs-filter.active,.gs-filter:hover{background:#111;color:#ffdc00}
+    .gs-products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+    .gs-product{border:2px solid #111;background:#fff;padding:.75rem;box-shadow:2px 2px 0 #ddd;min-width:0}
+    .gs-product-top{display:flex;align-items:center;justify-content:space-between;gap:.4rem;margin-bottom:.6rem}
+    .gs-product-icon{width:2.25rem;height:2.25rem;display:grid;place-items:center;background:#ffdc00;border:2px solid #111;font-size:1rem}
+    .gs-product-type{font-size:.52rem;font-weight:1000;background:#f2f2f2;border:1px solid #111;padding:.22rem .35rem}
+    .gs-product h3{font-size:.86rem;color:#111;line-height:1.25;margin:0 0 .35rem;overflow-wrap:anywhere}
+    .gs-seller{font-size:.65rem;color:#777;margin-bottom:.45rem}
+    .gs-price{font-size:.95rem;font-weight:1000;color:#111;margin:.35rem 0}
+    .gs-desc{font-size:.7rem;color:#555;line-height:1.4;overflow-wrap:anywhere;min-height:2rem}
+    .gs-rating{font-size:.65rem;color:#9a7600;margin:.45rem 0}
+    .gs-contact{display:flex;gap:.4rem;margin-top:.6rem}
+    .gs-contact a{flex:1;text-align:center;text-decoration:none;padding:.48rem .2rem;border:2px solid #111;background:#ffdc00;color:#111;font-size:.58rem;font-weight:1000}
+    .gs-contact a.telegram{background:#111;color:#ffdc00}
+    .gs-empty{grid-column:1/-1;text-align:center;padding:1.8rem .5rem;border:2px dashed #aaa;color:#777;display:flex;flex-direction:column;align-items:center;gap:.5rem;font-size:.7rem}
+    .gs-empty i{font-size:1.5rem;color:#111}
+    .gs-footer-strip{background:#111;color:#ffdc00;padding:.8rem 1rem;font-size:.75rem;font-weight:1000;letter-spacing:.08em;display:flex;align-items:center;gap:.55rem}
+    .gs-footer-strip span{margin-left:auto;color:#fff;font-size:.55rem}
+    @media(max-width:47.5rem){.gs-products{grid-template-columns:repeat(2,minmax(0,1fr))}.gs-card,.gs-products-card{padding:.8rem}.gs-form-grid{gap:.55rem}}
+    @media(max-width:23rem){.gs-products{grid-template-columns:1fr}.gs-form-grid{grid-template-columns:1fr}}
+
+    /* RESPONSIVE REFINEMENT — percentage layouts + scalable typography */
+    html { font-size: 100%; }
+    body { font-size: 100%; }
+    main { width: 94%; max-width: 74rem; padding: 1.5rem 1.5% 7rem; }
+    .topbar { padding-left: 3%; padding-right: 3%; }
+    .hero { grid-template-columns: 1.05fr .95fr; gap: 3%; padding: 1.5rem 0 2rem; }
+    h1 { font-size: clamp(2.7rem, 6.2vw, 4.6rem); line-height: .94; letter-spacing: -.045em; margin: 1.1rem 0; }
+    h1 .highlight, h1 .yellowline { padding: .12em .2em; border-width: .18rem; box-shadow: .28rem .28rem 0 #111; }
+    .lead { font-size: clamp(.9rem, 1.45vw, 1.05rem); line-height: 1.55; }
+    .showcase { width: 100%; padding: 1%; box-shadow: .45rem .45rem 0 #111; }
+    .showcase-top { min-height: 10rem; }
+    .big-logo { font-size: clamp(4.5rem, 8vw, 7rem); }
+    .showcase-info { padding: 1.1rem 2% .7rem; }
+    .showcase-info h2 { font-size: clamp(1.25rem, 2vw, 1.65rem); }
+    .showcase-info p { font-size: .8rem; }
+    .eyebrow { font-size: .68rem; padding: .45rem .7rem; }
+    .cta { padding: .8rem 1rem; font-size: .82rem; }
+    .section-head { margin: 1.7rem 0 1rem; }
+    .section-title { font-size: clamp(1.15rem, 2.4vw, 1.7rem); padding: .5rem .8rem; }
+    .grid { gap: 1.1%; }
+    .card { padding: 1rem; box-shadow: .25rem .25rem 0 #111; }
+    .iconbox { width: 3rem; height: 3rem; font-size: 1.45rem; margin-bottom: .65rem; }
+    .card h3 { font-size: clamp(.9rem, 1.5vw, 1.08rem); }
+    .card p { font-size: .8rem; line-height: 1.45; }
+    .page-hero { padding: 1.5rem 2%; margin: .5rem 0 1.5rem; }
+    .page-hero h1 { font-size: clamp(2.2rem, 5vw, 3.7rem); letter-spacing: -.04em; }
+    .page-hero p { font-size: .92rem; }
+    .toolbar { gap: .5rem; }
+    .search, .filter { padding: .65rem .8rem; font-size: .82rem; }
+    .list { gap: .7rem; }
+    .list-item { padding: .75rem; gap: .8rem; }
+    .list-item .iconbox { width: 2.8rem; height: 2.8rem; flex-basis: 2.8rem; }
+    .list-item h3 { font-size: .95rem; }
+    .list-item p { font-size: .78rem; }
+    .country { padding: .8rem; gap: .75rem; }
+    .flag { font-size: 1.7rem; }
+    .dark-panel { padding: 1.25rem; margin-top: 1.5rem; }
+    .dark-panel h2 { font-size: 1.2rem; }
+    .dark-panel p { font-size: .88rem; }
+    footer { padding: 1.5rem 2%; }
+    @media (max-width: 47.5rem) {
+      main { width: 94%; padding: 1rem 1% 7rem; }
+      .topbar { padding-left: 3%; padding-right: 3%; }
+      .hero { grid-template-columns: 1fr; gap: 1.4rem; padding-top: 1rem; }
+      h1 { font-size: clamp(2.8rem, 10.5vw, 4rem); line-height: .96; }
+      .lead { font-size: .9rem; }
+      .showcase { width: 94%; }
+      .showcase-top { min-height: 8.5rem; }
+      .big-logo { font-size: 5rem; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
+      .card { padding: .8rem; }
+      .card h3 { font-size: .9rem; }
+      .card p { font-size: .76rem; }
+      .page-hero { padding: 1.15rem 3%; }
+      .page-hero h1 { font-size: clamp(2.15rem, 8.5vw, 3.2rem); }
+      .page-hero p { font-size: .85rem; }
+      .section-title { font-size: 1.05rem; }
+      .bottom-nav button { font-size: .62rem; }
+      .bottom-nav button span:first-child { font-size: 1.25rem; }
+    }
+    @media (max-width: 24.5rem) {
+      .grid { grid-template-columns: 1fr; }
+      .actions .cta { flex: 1; }
+      h1 { font-size: 2.6rem; }
+      .brand { font-size: 1.05rem; }
+    }
+
+
+    /* FINAL DETAIL AUDIT */
+    @media(max-width:47.5rem){
+      .bottom-nav{
+        left:3%;right:3%;bottom:calc(.45rem + env(safe-area-inset-bottom));
+        width:94%;border:3px solid #ffdc00;border-radius:1.15rem;
+        box-shadow:0 .3rem 0 #080808,0 .45rem 0 rgba(0,0,0,.18);
+        padding:.42rem .25rem calc(.42rem + env(safe-area-inset-bottom));
+        overflow:hidden;background:#080808;
+      }
+      .bottom-nav button{border-right:1px solid rgba(255,255,255,.3);min-width:0}
+      .bottom-nav button:last-child{border-right:0}
+      .bottom-nav button span:first-child{display:grid;place-items:center;width:2rem;height:1.8rem;font-size:1.12rem}
+      .bottom-nav button.active span:first-child{color:#ffdc00}
+      body.keyboard-open .bottom-nav{transform:translateY(150%);opacity:0}
+    }
+    .chat-message,.gs-poll-dialog,.gs-poll-dialog input,.gs-poll-dialog textarea{border-radius:0!important}
+    .chat-message{touch-action:pan-y;user-select:none;-webkit-user-select:none}
+    .chat-message .chat-msg-text,.chat-message .chat-msg-caption{user-select:text;-webkit-user-select:text}
+    .chat-msg-actions{display:none!important}
+    .chat-replying{border:2px solid #111;border-left:5px solid #111;border-radius:.7rem!important;background:#ffed8a;box-shadow:2px 2px 0 #111;margin:.35rem .5rem;padding:.55rem .75rem}
+    .chat-msg-reply{border:1px solid #111;border-left:4px solid #111;border-radius:.55rem;background:#fff4b8}
+    .chat-message.swipe-ready{transition:transform .12s ease}
+    .chat-message.swipe-reply{transform:translateX(-.45rem);box-shadow:4px 3px 0 #111}
+    .chat-message.swipe-reply:after{content:"↶";position:absolute;right:-1.6rem;top:50%;transform:translateY(-50%);font-size:1.1rem;font-weight:1000;color:#111}
+    .gs-poll-backdrop{position:fixed;inset:0;z-index:10030;display:none;align-items:center;justify-content:center;padding:1rem;background:rgba(0,0,0,.72)}
+    .gs-poll-backdrop.open{display:flex}
+    .gs-poll-dialog{width:min(100%,27rem);background:#fff;border:3px solid #111;box-shadow:6px 6px 0 #111;color:#111}
+    .gs-poll-head{display:flex;align-items:center;justify-content:space-between;padding:.75rem .85rem;background:#ffdc00;border-bottom:3px solid #111;font-size:.78rem}
+    .gs-poll-head button{border:0;background:transparent;color:#111;font-size:1rem}
+    .gs-poll-body{padding:.9rem}
+    .gs-poll-body .gs-field{margin-bottom:.8rem}
+    .gs-poll-body input,.gs-poll-body textarea{width:100%;display:block;margin-top:.35rem;padding:.7rem;border:2px solid #111;background:#fff;color:#111;font:inherit;font-size:.8rem;outline:none}
+    .gs-poll-body textarea{resize:vertical}
+    .gs-poll-hint{font-size:.65rem;color:#666;line-height:1.45;margin:.25rem 0 0}
+    .gs-poll-actions{display:flex;justify-content:flex-end;gap:.5rem;padding:0 .9rem .9rem}
+    .gs-poll-actions button{padding:.65rem .8rem;border:2px solid #111;background:#fff;color:#111;font-size:.67rem;font-weight:1000}
+    .gs-poll-actions button[type=submit]{background:#ffdc00;box-shadow:2px 2px 0 #111}
+    .chat-poll{border-radius:0!important;border:2px solid #111;background:#fff;padding:.65rem}
+    .chat-poll-option{border-radius:0!important;border:1.5px solid #111;min-height:2.35rem}
+    .chat-poll-option.voted{background:#ffdc00;border-width:2px}
+    .chat-poll-option .poll-percent{font-size:.58rem;font-weight:1000;color:#555;white-space:nowrap}
+
+  
+    /* CUSTOM MODAL + TOAST — required for all custom alerts/prompts */
+    .mgz-modal-backdrop{
+      position:fixed!important;inset:0!important;z-index:20000!important;
+      display:none;align-items:center;justify-content:center;
+      padding:1rem;background:rgba(0,0,0,.72);
+      overflow-y:auto;overscroll-behavior:contain;
+    }
+    .mgz-modal-backdrop.open{display:flex!important}
+    .mgz-modal{
+      display:flex;flex-direction:column;width:min(100%,27rem);max-height:min(86dvh,42rem);
+      overflow:hidden;background:#fff;color:#111;border:3px solid #111;
+      border-radius:.85rem;box-shadow:7px 7px 0 #111;
+    }
+    .mgz-modal-head{
+      display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+      flex:0 0 auto;padding:.8rem .95rem;background:#ffdc00;border-bottom:3px solid #111;
+      font-size:.84rem;letter-spacing:.04em;
+    }
+    .mgz-modal-close{
+      flex:0 0 2rem;width:2rem;height:2rem;display:grid;place-items:center;
+      border:2px solid #111;border-radius:.35rem;background:#fff;color:#111;
+      font-size:1rem;line-height:1;
+    }
+    .mgz-modal-body{
+      padding:1rem;overflow-y:auto;overscroll-behavior:contain;
+      white-space:pre-line;overflow-wrap:anywhere;word-break:normal;
+      font-size:.9rem;line-height:1.55;color:#222;
+    }
+    .mgz-modal-body .mgz-modal-input{
+      display:block;width:100%;max-width:100%;margin-top:.75rem;padding:.7rem;
+      border:2px solid #111;border-radius:.35rem;background:#fff;color:#111;
+      font:inherit;outline-offset:2px;
+    }
+    .mgz-modal-actions{
+      display:flex;justify-content:flex-end;gap:.55rem;flex:0 0 auto;
+      padding:.2rem 1rem 1rem;background:#fff;
+    }
+    .mgz-modal-actions button{
+      border:2px solid #111;border-radius:.35rem;background:#ffdc00;color:#111;
+      padding:.6rem 1rem;font-size:.72rem;font-weight:1000;box-shadow:2px 2px 0 #111;
+    }
+    .mgz-toast{
+      position:fixed;left:50%;bottom:calc(6.2rem + env(safe-area-inset-bottom));
+      z-index:21000;max-width:min(90vw,26rem);padding:.7rem 1rem;
+      background:#090909;color:#ffdc00;border:2px solid #ffdc00;border-radius:.65rem;
+      box-shadow:3px 3px 0 #111;font-size:.78rem;font-weight:800;text-align:center;
+      opacity:0;visibility:hidden;transform:translate(-50%,.5rem);transition:.18s ease;
+      pointer-events:none;
+    }
+    .mgz-toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+    body.modal-open{overflow:hidden}
+
+  
+    /* HEADER ALIGNMENT: menu/sidebar LEFT, METAGZ BRAND RIGHT */
+    .topbar{gap:.75rem}
+    .menu-toggle{order:0;flex:0 0 auto}
+    .desktop-nav{order:1;margin-right:auto;margin-left:1rem}
+    .brand{order:2;margin-left:auto;text-decoration:none;color:#090909;white-space:nowrap}
+    @media(max-width:47.5rem){
+      .topbar{justify-content:space-between;gap:.65rem}
+      .menu-toggle{display:grid;place-items:center;order:0;margin-right:auto}
+      .brand{order:2;margin-left:auto}
+      .desktop-nav.open{
+        left:0;right:auto;width:min(84vw,22rem);top:4.1875rem;
+        grid-template-columns:1fr;border-right:3px solid #111;
+        box-shadow:4px 5px 0 rgba(0,0,0,.22);
+      }
+      .desktop-nav.open .nav-btn.dark{grid-column:auto}
+      .mgz-modal-backdrop{padding:1rem}
+      .mgz-modal{max-height:82dvh}
+      .mgz-toast{bottom:calc(6.3rem + env(safe-area-inset-bottom))}
+    }
+
+
+/* GLOBAL SELL — product ownership, photos and product chat */
+.gs-photo-field input{padding:.55rem;background:#fff}
+.gs-photo-help{display:block;margin-top:.35rem;color:#777;font-size:.62rem;font-weight:500;letter-spacing:0}
+#gsImagePreview{display:block;max-width:100%;max-height:13rem;object-fit:contain;margin-top:.6rem;border:2px solid #111;background:#f4f4f4}
+#gsImagePreview[hidden]{display:none}
+.gs-product{cursor:pointer}
+.gs-product:focus-visible{outline:3px solid #b88d00;outline-offset:3px}
+.gs-product-image{display:block;width:100%;max-height:13rem;object-fit:cover;border:1.5px solid #111;margin-bottom:.65rem;background:#f3f3f3}
+.gs-product-actions{display:flex;gap:.4rem;margin-top:.65rem}
+.gs-product-actions button{flex:1;border:2px solid #111;padding:.48rem .35rem;background:#fff;color:#111;font-size:.59rem;font-weight:1000}
+.gs-product-actions .gs-edit{background:#ffdc00}
+.gs-product-actions .gs-delete{background:#111;color:#ffdc00}
+.gs-product .gs-contact{position:relative;z-index:2}
+.gs-product .gs-contact a{position:relative;z-index:3}
+.gs-chat-backdrop{position:fixed;inset:0;z-index:11000;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:1rem}
+.gs-chat-backdrop.open{display:flex}
+.gs-chat-window{width:min(100%,34rem);height:min(86dvh,44rem);background:#fff;border:3px solid #111;box-shadow:7px 7px 0 #111;display:flex;flex-direction:column;overflow:hidden;color:#111}
+.gs-chat-header{display:flex;align-items:center;justify-content:space-between;padding:.75rem .85rem;background:#ffdc00;border-bottom:3px solid #111}
+.gs-chat-header small{display:block;font-size:.55rem;font-weight:1000;letter-spacing:.1em}
+.gs-chat-header b{display:block;font-size:.9rem;font-weight:1000}
+.gs-chat-header button{width:2.1rem;height:2.1rem;border:2px solid #111;background:#fff;font-size:1rem}
+.gs-chat-product{display:flex;align-items:center;gap:.7rem;padding:.65rem .8rem;border-bottom:2px solid #111;background:#f6f6f6}
+.gs-chat-product img{width:3.4rem;height:3.4rem;object-fit:cover;border:2px solid #111;background:#fff}
+.gs-chat-product b{display:block;font-size:.75rem}
+.gs-chat-product small{display:block;color:#666;font-size:.62rem;margin-top:.15rem}
+.gs-chat-tabs{display:flex;border-bottom:2px solid #111}
+.gs-chat-tabs button{flex:1;padding:.7rem .4rem;border:0;border-right:1px solid #111;background:#eee;color:#111;font-size:.65rem;font-weight:1000}
+.gs-chat-tabs button:last-child{border-right:0}
+.gs-chat-tabs button.active{background:#111;color:#ffdc00}
+.gs-chat-stream{flex:1;min-height:0;overflow:auto;padding:.8rem;background-color:#fff;background-image:radial-gradient(#ddd .7px,transparent .7px);background-size:1rem 1rem;display:flex;flex-direction:column;gap:.55rem}
+.gs-chat-msg{max-width:88%;align-self:flex-start;padding:.55rem .65rem;border:2px solid #111;background:#fff;overflow-wrap:anywhere}
+.gs-chat-msg.mine{align-self:flex-end;background:#fff0a0}
+.gs-chat-msg b{display:block;font-size:.58rem;margin-bottom:.2rem}
+.gs-chat-msg p{font-size:.75rem;line-height:1.4;white-space:pre-wrap;margin:0}
+.gs-chat-msg time{display:block;text-align:right;font-size:.52rem;color:#777;margin-top:.2rem}
+.gs-chat-empty{margin:auto;text-align:center;color:#777;font-size:.72rem}
+.gs-chat-compose{display:flex;gap:.45rem;padding:.65rem;border-top:2px solid #111;background:#fff}
+.gs-chat-compose input{flex:1;min-width:0;border:2px solid #111;padding:.65rem;font:inherit;font-size:.78rem;color:#111}
+.gs-chat-compose button{width:2.6rem;flex:0 0 2.6rem;border:2px solid #111;background:#111;color:#ffdc00}
+.gs-chat-local-note{padding:.3rem .65rem .55rem;font-size:.53rem;color:#777;background:#fff}
+.bot-directory .list-item{align-items:center}
+.bot-directory .list-item>div:nth-child(2){flex:1;min-width:0}
+.bot-directory .list-item p{line-height:1.4}
+.bot-open{color:#111;font-size:.8rem;margin-left:.3rem}
+@media(max-width:47.5rem){
+ .gs-chat-backdrop{padding:.45rem;align-items:flex-end}
+ .gs-chat-window{width:100%;height:min(88dvh,48rem);box-shadow:4px 4px 0 #111}
+ .gs-product-actions button{font-size:.55rem}
+}
+
+  </style>
+</head>
+<body>
+<div class="site">
+  <header class="topbar">
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="desktop-nav" id="desktopNav">
+      <button class="nav-btn active" data-page="home">Home</button>
+      <button class="nav-btn" data-page="store">Store</button>
+      <button class="nav-btn" data-page="groups">Groups</button>
+      <button class="nav-btn" data-page="global">Global Sell</button>
+      <a class="nav-btn dark" href="https://t.me/metagzz" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram" aria-hidden="true"></i> CHANNEL</a>
+    </nav>
+    <a class="brand" href="https://t.me/AgzPrime" target="_blank" rel="noopener noreferrer" aria-label="METAGZ Telegram"><span class="brand-mark"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span> METAGZ</a>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="page active" id="home">
+      <div class="hero">
+        <div>
+          <span class="eyebrow">✦ WELCOME TO METAGZ</span>
+          <h1><span class="highlight">METAGZ.</span><br><span class="yellowline">PROJECT.</span><br><span class="highlight">FREE &amp; VIP</span></h1>
+          <p class="lead">Ekosistem digital untuk tools, script, layanan, komunitas, dan bot Telegram. Semua kebutuhan digital kamu, dalam satu tempat.</p>
+          <div class="actions">
+            <button class="cta" data-page="store"><i class="fa-solid fa-store" aria-hidden="true"></i> JELAJAHI STORE</button>
+            <a class="cta light" href="https://t.me/metagzz" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram" aria-hidden="true"></i> CHANNEL</a>
+          </div>
+        </div>
+        <div class="showcase">
+          <div class="showcase-top"><div class="big-logo">M✦</div></div>
+          <div class="showcase-info"><h2>METAGZ</h2><p>DIGITAL ECOSYSTEM</p><span class="tag">TOOLS • SERVICES • COMMUNITY</span></div>
+        </div>
+      </div>
+      <div class="section-head"><h2 class="section-title">✦ LAYANAN UNGGULAN</h2></div>
+      <div class="grid">
+        <article class="card"><div class="iconbox"><i class="fa-solid fa-bolt"></i></div><h3>Auto Order</h3><p>Solusi pemesanan otomatis yang praktis.</p><button class="text-link" data-page="bot">Lihat bot →</button></article>
+        <article class="card"><div class="iconbox"><i class="fa-solid fa-code"></i></div><h3>Web Development</h3><p>Website, panel, API, dan project custom.</p><button class="text-link" data-page="store">Jelajahi →</button></article>
+        <article class="card"><div class="iconbox"><i class="fa-solid fa-server"></i></div><h3>Server & VPS</h3><p>Kebutuhan hosting dan server digital.</p><button class="text-link" data-page="store">Lihat layanan →</button></article>
+        <article class="card"><div class="iconbox"><i class="fa-solid fa-robot"></i></div><h3>Telegram Bot</h3><p>Bot dengan fitur yang membantu aktivitas.</p><button class="text-link" data-page="bot">Lihat bot →</button></article>
+        <article class="card"><div class="iconbox"><i class="fa-solid fa-users"></i></div><h3>Community</h3><p>Tempat berkumpul, berbagi, dan berdiskusi.</p><button class="text-link" data-page="groups">Gabung →</button></article>
+        <article class="card"><div class="iconbox"><i class="fa-solid fa-globe"></i></div><h3>Global Sell</h3><p>Informasi layanan digital lintas negara.</p><button class="text-link" data-page="global">Jelajahi →</button></article>
+      </div>
+      <div class="dark-panel"><h2>METAGZ — ALWAYS BUILDING.</h2><p>Tempat untuk menemukan produk digital, menggunakan tools, terhubung dengan komunitas, dan menjelajahi layanan dari METAGZ.</p></div>
+    </section>
+
+    <!-- STORE -->
+    <section class="page" id="store">
+      <div class="page-hero"><span class="eyebrow">✦ DIGITAL STORE</span><h1>PRODUK DIGITAL<br>TERLENGKAP.</h1><p>Temukan script, tools, panel, game, dan berbagai layanan digital. Pilih produk lalu hubungi admin untuk informasi dan pemesanan.</p></div>
+      <div class="toolbar"><input class="search" id="productSearch" placeholder="⌕ Cari produk..." aria-label="Cari produk"><button class="filter active" data-filter="all">Semua</button><button class="filter" data-filter="script">Script</button><button class="filter" data-filter="tools">Tools</button><button class="filter" data-filter="panel">Panel</button><button class="filter" data-filter="game">Game</button></div>
+      <div class="grid" id="productGrid">
+        <article class="card product-card" data-category="script" data-search="script auto order telegram"><div class="iconbox"><i class="fa-solid fa-code"></i></div><h3>Script Auto Order</h3><p>Script untuk sistem pemesanan otomatis Telegram.</p><div class="price">Hubungi admin</div><a class="product-btn" href="#" data-link="storeContact">TANYA PRODUK <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+        <article class="card product-card" data-category="panel" data-search="panel bot telegram"><div class="iconbox"><i class="fa-solid fa-server"></i></div><h3>Panel Bot Telegram</h3><p>Panel pengelolaan bot dan layanan digital.</p><div class="price">Hubungi admin</div><a class="product-btn" href="#" data-link="storeContact">TANYA PRODUK <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+        <article class="card product-card" data-category="tools" data-search="tools utility tools"><div class="iconbox"><i class="fa-solid fa-gear"></i></div><h3>Digital Tools</h3><p>Kumpulan tools untuk membantu pekerjaan digital.</p><div class="price">Hubungi admin</div><a class="product-btn" href="#" data-link="storeContact">TANYA PRODUK <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+        <article class="card product-card" data-category="panel" data-search="hosting server vps"><div class="iconbox"><i class="fa-solid fa-database"></i></div><h3>Server & VPS</h3><p>Kebutuhan server untuk project dan aplikasi.</p><div class="price">Hubungi admin</div><a class="product-btn" href="#" data-link="storeContact">TANYA PRODUK <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+        <article class="card product-card" data-category="game" data-search="game script game"><div class="iconbox"><i class="fa-solid fa-gamepad"></i></div><h3>Game Project</h3><p>Project dan kebutuhan pengembangan game.</p><div class="price">Hubungi admin</div><a class="product-btn" href="#" data-link="storeContact">TANYA PRODUK <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+        <article class="card product-card" data-category="script" data-search="custom project website api"><div class="iconbox"><i class="fa-solid fa-star"></i></div><h3>Custom Project</h3><p>Pembuatan project sesuai kebutuhan kamu.</p><div class="price">Konsultasi</div><a class="product-btn" href="#" data-link="storeContact">KONSULTASI <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+      </div>
+      <div class="empty" id="emptyProducts">Produk tidak ditemukan. Coba kata kunci lain.</div>
+    </section>
+
+    <!-- CHAT GROUPS -->
+    <section class="page" id="groups">
+      <div class="chat-shell">
+        <header class="chat-header">
+          <div class="chat-brand"><div class="chat-avatar"><i class="fa-solid fa-users"></i></div><div><strong>GROUP</strong><small><span class="chat-live-dot"></span> METAGZ COMMUNITY • LOCAL MODE</small></div></div>
+          <button class="chat-head-btn" id="chatInfoBtn" aria-label="Info grup"><i class="fa-solid fa-circle-info"></i></button>
+        </header>
+        <div class="chat-topic"><i class="fa-solid fa-hashtag"></i><div><b>GENERAL</b><small>Tempat ngobrol, berbagi, dan saling bantu.</small></div><span id="chatMemberCount">LOCAL</span></div>
+        <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
+        <div class="chat-typing" id="chatTyping"></div>
+        <div class="chat-replying" id="chatReplying" hidden><div><b>MEMBALAS PESAN</b><span id="chatReplyText"></span></div><button type="button" id="chatCancelReply" aria-label="Batal reply"><i class="fa-solid fa-xmark"></i></button></div>
+        <div class="chat-composer">
+          <div class="chat-tools">
+            <button type="button" id="chatAttachBtn" title="Kirim gambar/video"><i class="fa-solid fa-paperclip"></i></button>
+            <button type="button" id="chatPollBtn" title="Buat polling"><i class="fa-solid fa-square-poll-vertical"></i></button>
+            <button type="button" id="chatTagBtn" title="Tag pengguna"><i class="fa-solid fa-at"></i></button>
+            <button type="button" id="chatVoiceBtn" title="Rekam voice note"><i class="fa-solid fa-microphone"></i></button>
+          </div>
+          <div class="chat-input-row">
+            <textarea id="chatInput" rows="1" maxlength="1500" placeholder="Tulis pesan ke grup..."></textarea>
+            <button id="chatSendBtn" class="chat-send" aria-label="Kirim pesan"><i class="fa-solid fa-paper-plane"></i></button>
+          </div>
+          <div class="chat-compose-hint"><span>Enter untuk kirim • Shift + Enter untuk baris baru</span><span id="chatRecordStatus"></span></div>
+        </div>
+      </div>
+      <input type="file" id="chatFileInput" accept="image/*,video/*" multiple hidden>
+      <input type="file" id="chatCameraInput" accept="image/*" capture="environment" hidden>
+      <div class="chat-preview-backdrop" id="chatPreviewModal" aria-hidden="true"><div class="chat-preview-box"><div class="chat-preview-head"><b><i class="fa-solid fa-paperclip"></i> PREVIEW MEDIA</b><button type="button" id="chatPreviewClose"><i class="fa-solid fa-xmark"></i></button></div><div id="chatPreviewContent" class="chat-preview-content"></div><textarea id="chatMediaCaption" rows="2" maxlength="700" placeholder="Tambahkan caption..."></textarea><div class="chat-preview-actions"><button type="button" id="chatPreviewCancel">BATAL</button><button type="button" id="chatPreviewSend"><i class="fa-solid fa-paper-plane"></i> KIRIM</button></div></div></div>
+
+      <div class="gs-poll-backdrop" id="groupPollModal" aria-hidden="true">
+        <form class="gs-poll-dialog" id="groupPollForm">
+          <div class="gs-poll-head"><b><i class="fa-solid fa-square-poll-vertical"></i> BUAT POLLING GROUP</b><button type="button" id="groupPollClose" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button></div>
+          <div class="gs-poll-body">
+            <label class="gs-field">PERTANYAAN POLLING<input id="groupPollQuestion" maxlength="140" required placeholder="Contoh: Kalian pilih yang mana?"></label>
+            <label class="gs-field">PILIHAN JAWABAN <small>(SATU PILIHAN PER BARIS)</small><textarea id="groupPollOptions" rows="4" maxlength="500" required placeholder="Pilihan pertama&#10;Pilihan kedua&#10;Pilihan ketiga"></textarea></label>
+            <p class="gs-poll-hint"><i class="fa-solid fa-circle-info"></i> Maksimal 8 pilihan. Kamu bisa mengganti pilihan suara selama polling masih berjalan.</p>
+          </div>
+          <div class="gs-poll-actions"><button type="button" id="groupPollCancel">BATAL</button><button type="submit"><i class="fa-solid fa-paper-plane"></i> BUAT POLLING</button></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- GLOBAL SELL -->
+    <section class="page" id="global">
+      <div class="page-hero global-sell-hero">
+        <span class="eyebrow"><i class="fa-solid fa-globe"></i> COMMUNITY MARKETPLACE</span>
+        <h1>GLOBAL SELL</h1>
+        <p>Marketplace komunitas untuk berbagi dan menemukan produk digital. Upload produk kamu atau cari penawaran dari pengguna lain.</p>
+        <div class="gs-online"><span></span> MARKETPLACE ONLINE</div>
+      </div>
+
+      <div class="gs-search-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="gsSearch" class="gs-search" type="search" placeholder="Cari produk, seller, atau deskripsi...">
+      </div>
+
+      <div class="gs-card">
+        <div class="gs-section-title"><i class="fa-solid fa-cloud-arrow-up"></i> UPLOAD PRODUK <span>SELLER AREA</span></div>
+        <div class="gs-form-grid">
+          <label class="gs-field">NAMA PRODUK<input id="gsTitle" maxlength="60" placeholder="Contoh: Script Auto Order"></label>
+          <label class="gs-field">HARGA (RP)<input id="gsPrice" type="number" min="0" inputmode="numeric" placeholder="Contoh: 25000"></label>
+        </div>
+        <label class="gs-field">DESKRIPSI PRODUK<textarea id="gsDescription" maxlength="500" rows="3" placeholder="Jelaskan produk kamu..."></textarea></label>
+        <label class="gs-field gs-photo-field"><i class="fa-solid fa-image"></i> FOTO PRODUK
+          <input id="gsImage" type="file" accept="image/*">
+          <span class="gs-photo-help">Pilih foto produk (maksimal 1.5 MB untuk demo lokal).</span>
+          <img id="gsImagePreview" alt="Preview foto produk" hidden>
+        </label>
+        <div class="gs-section-title gs-contact-title"><i class="fa-solid fa-address-card"></i> KONTAK SELLER <span>MINIMAL SATU</span></div>
+        <div class="gs-form-grid">
+          <label class="gs-field"><i class="fa-brands fa-whatsapp"></i> WHATSAPP<input id="gsWa" type="tel" inputmode="numeric" placeholder="628xxxxxxxxxx"></label>
+          <label class="gs-field"><i class="fa-brands fa-telegram"></i> TELEGRAM<input id="gsTelegram" placeholder="@username"></label>
+        </div>
+        <button class="gs-submit" id="gsUpload"><i class="fa-solid fa-paper-plane"></i> UPLOAD PRODUCT</button>
+        <p class="gs-note"><i class="fa-solid fa-circle-info"></i> Demo awal: produk tersimpan di browser/perangkat ini. Backend online dapat disambungkan kemudian.</p>
+      </div>
+
+      <div class="gs-products-card">
+        <div class="gs-products-head">
+          <div class="gs-section-title"><i class="fa-solid fa-box-open"></i> SEMUA PRODUK</div>
+          <span class="gs-count" id="gsCount">0 PRODUK</span>
+        </div>
+        <div class="gs-filter-row">
+          <button class="gs-filter active" data-gs-filter="all">SEMUA</button>
+          <button class="gs-filter" data-gs-filter="script">SCRIPT</button>
+          <button class="gs-filter" data-gs-filter="tools">TOOLS</button>
+          <button class="gs-filter" data-gs-filter="digital">DIGITAL</button>
+        </div>
+        <div class="gs-products" id="gsProducts">
+          <div class="gs-empty"><i class="fa-solid fa-box-open"></i><strong>MEMUAT PRODUK...</strong></div>
+        </div>
+      </div>
+      <div class="gs-footer-strip"><i class="fa-solid fa-bolt"></i> GLOBAL SELL <span>COMMUNITY MARKETPLACE</span></div>
+
+      <div class="gs-chat-backdrop" id="gsChatBackdrop" aria-hidden="true">
+        <section class="gs-chat-window" role="dialog" aria-modal="true" aria-labelledby="gsChatTitle">
+          <header class="gs-chat-header">
+            <div><small>GLOBAL SELL • PRODUCT ROOM</small><b id="gsChatTitle">CHAT PRODUK</b></div>
+            <button type="button" id="gsChatClose" aria-label="Tutup chat"><i class="fa-solid fa-xmark"></i></button>
+          </header>
+          <div class="gs-chat-product" id="gsChatProduct"></div>
+          <div class="gs-chat-tabs">
+            <button type="button" class="active" data-gschat-tab="message"><i class="fa-solid fa-comments"></i> PESAN</button>
+            <button type="button" data-gschat-tab="comment"><i class="fa-solid fa-message"></i> KOMENTAR</button>
+          </div>
+          <div class="gs-chat-stream" id="gsChatStream"></div>
+          <form class="gs-chat-compose" id="gsChatForm">
+            <input id="gsChatInput" maxlength="500" autocomplete="off" placeholder="Tulis pesan..." aria-label="Tulis pesan">
+            <button type="submit" aria-label="Kirim"><i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+          <p class="gs-chat-local-note">Mode tampilan lokal: pesan hanya tersimpan di browser ini sampai backend diaktifkan.</p>
+        </section>
+      </div>
+    </section>
+
+    <!-- BOT -->
+    <section class="page" id="bot">
+      <div class="page-hero"><span class="eyebrow">✦ TELEGRAM AUTOMATION</span><h1>MEET THE<br>METAGZ BOTS.</h1><p>Kenali bot Telegram dari METAGZ. Buka bot untuk mencoba fitur dan layanan yang tersedia.</p></div>
+      <div class="section-head"><h2 class="section-title">✦ DAFTAR BOT</h2></div>
+      <div class="list bot-directory">
+        <a class="list-item" href="https://t.me/ubot_free" target="_blank" rel="noopener noreferrer">
+          <div class="iconbox"><i class="fa-solid fa-user-astronaut"></i></div>
+          <div><h3>USERBOT METAGZ FREE</h3><p>Jadilah Userbot dengan berbagai kategori dan fitur yang di lengkapi Rich Message.</p></div>
+          <span class="status">FREE</span><i class="fa-solid fa-arrow-up-right-from-square bot-open"></i>
+        </a>
+        <a class="list-item" href="https://t.me/MetagzAutoOrder_bot" target="_blank" rel="noopener noreferrer">
+          <div class="iconbox"><i class="fa-solid fa-cart-shopping"></i></div>
+          <div><h3>AUTO ORDER</h3><p>Lihat dan Beli product via bot yang di lengkapi berbagai product dan payment gateway (otomatis).</p></div>
+          <span class="status">BOT</span><i class="fa-solid fa-arrow-up-right-from-square bot-open"></i>
+        </a>
+        <a class="list-item" href="https://t.me/FreeSpammer_bot" target="_blank" rel="noopener noreferrer">
+          <div class="iconbox"><i class="fa-solid fa-message"></i></div>
+          <div><h3>SPAM OTP FREE</h3><p>Spam otp ke nomor WhatsApp target via bot.</p></div>
+          <span class="status">FREE</span><i class="fa-solid fa-arrow-up-right-from-square bot-open"></i>
+        </a>
+        <a class="list-item" href="https://t.me/+jUu84KtLkM0wOWFl" target="_blank" rel="noopener noreferrer">
+          <div class="iconbox"><i class="fa-solid fa-bug"></i></div>
+          <div><h3>MURBUG FREE</h3><p>Bug nomor WhatsApp via bot dan free di jamin gacor.</p></div>
+          <span class="status">FREE</span><i class="fa-solid fa-arrow-up-right-from-square bot-open"></i>
+        </a>
+      </div>
+      <div class="dark-panel"><h2>PUNYA IDE BOT?</h2><p>Ingin membuat bot custom atau bekerja sama dengan METAGZ? Ceritakan kebutuhanmu.</p><div class="actions"><a class="cta" href="#" data-link="contact">REQUEST BOT →</a></div></div>
+    </section>
+  </main>
+
+  <footer><strong>METAGZ</strong><p>METAGZ • PROJECT • FREE &amp; VIP</p><p>© <span id="year"></span> METAGZ. All rights reserved.</p></footer>
+  <div class="mgz-modal-backdrop" id="mgzModal" role="dialog" aria-modal="true" aria-labelledby="mgzModalTitle">
+  <div class="mgz-modal"><div class="mgz-modal-head"><strong id="mgzModalTitle">METAGZ NOTICE</strong><button class="mgz-modal-close" id="mgzModalClose" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button></div><div class="mgz-modal-body" id="mgzModalBody"></div><div class="mgz-modal-actions" id="mgzModalActions"></div></div>
+</div><div class="mgz-toast" id="mgzToast"></div>
+<nav class="bottom-nav" aria-label="Navigasi utama">
+    <button class="active" data-page="home"><span><i class="fa-solid fa-house"></i></span>HOME</button>
+    <button data-page="store"><span><i class="fa-solid fa-store"></i></span>STORE</button>
+    <button data-page="groups"><span><i class="fa-solid fa-users"></i></span>GROUP</button>
+    <button data-page="global"><span><i class="fa-solid fa-earth-asia"></i></span>GLOBAL</button>
+    <button data-page="bot"><span><i class="fa-solid fa-robot"></i></span>BOT</button>
+  </nav>
+</div>
+<script>
+/* =========================================================
+   METAGZ WEBSITE CONFIG
+   Ganti URL di bawah ini dengan link milik kamu.
+   Contoh Telegram: https://t.me/username_bot
+   Contoh channel:  https://t.me/nama_channel
+   ========================================================= */
+const METAGZ_CONFIG = {
+  links: {
+    // BOT
+    mainBot: "https://t.me/ubot_free",
+    orderBot: "https://t.me/MetagzAutoOrder_bot",
+    supportBot: "https://t.me/USERNAME_SUPPORT_BOT",
+    toolsBot: "https://t.me/USERNAME_TOOLS_BOT",
+
+    // GROUP & CHANNEL
+    officialGroup: "https://t.me/USERNAME_GROUP",
+    orderGroup: "https://t.me/USERNAME_ORDER_GROUP",
+    discussionGroup: "https://t.me/USERNAME_SUPPORT_GROUP",
+    announcementChannel: "https://t.me/USERNAME_CHANNEL",
+
+    // STORE & CONTACT
+    storeContact: "https://t.me/USERNAME_ADMIN",
+    contact: "https://t.me/USERNAME_ADMIN",
+
+    // GLOBAL SELL — arahkan ke halaman atau admin sesuai kebutuhan
+    globalUSA: "https://t.me/USERNAME_ADMIN",
+    globalSingapore: "https://t.me/USERNAME_ADMIN",
+    globalMalaysia: "https://t.me/USERNAME_ADMIN",
+    globalUK: "https://t.me/USERNAME_ADMIN",
+    globalCanada: "https://t.me/USERNAME_ADMIN",
+    globalEurope: "https://t.me/USERNAME_ADMIN"
+  }
+};
+
+/* Navigasi antar halaman */
+const pages = ["home","store","groups","global","bot"];
+function showPage(pageName){
+  if(!pages.includes(pageName)) return;
+  document.querySelectorAll(".page").forEach(page => page.classList.toggle("active", page.id === pageName));
+  document.querySelectorAll("[data-page]").forEach(button => button.classList.toggle("active", button.dataset.page === pageName));
+  document.getElementById("desktopNav").classList.remove("open");
+  document.getElementById("menuToggle").setAttribute("aria-expanded","false");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("[data-page]").forEach(el=>{
+  el.addEventListener("click", event=>{
+    event.preventDefault();
+    showPage(el.dataset.page);
+  });
+});
+
+/* Semua tombol/link dengan data-link mengambil tujuan dari METAGZ_CONFIG */
+document.querySelectorAll("[data-link]").forEach(el=>{
+  el.addEventListener("click", event=>{
+    const key = el.dataset.link;
+    const destination = METAGZ_CONFIG.links[key];
+    event.preventDefault();
+    if(!destination || destination.includes("USERNAME_")){
+      mgzAlert("Link '" + key + "' belum diatur. Edit METAGZ_CONFIG di bagian script HTML.");
+      return;
+    }
+    window.open(destination, "_blank", "noopener,noreferrer");
+  });
+});
+
+/* Menu hamburger */
+document.getElementById("menuToggle").addEventListener("click",()=>{
+  const nav=document.getElementById("desktopNav");
+  const opened=nav.classList.toggle("open");
+  document.getElementById("menuToggle").setAttribute("aria-expanded",String(opened));
+});
+
+/* Pencarian dan filter produk */
+let activeFilter = "all";
+const searchInput = document.getElementById("productSearch");
+function filterProducts(){
+  const query = searchInput.value.toLowerCase().trim();
+  let visible = 0;
+  document.querySelectorAll(".product-card").forEach(card=>{
+    const matchesCategory = activeFilter === "all" || card.dataset.category === activeFilter;
+    const matchesSearch = (card.dataset.search + " " + card.innerText).toLowerCase().includes(query);
+    const show = matchesCategory && matchesSearch;
+    card.style.display = show ? "flex" : "none";
+    if(show) visible++;
+  });
+  document.getElementById("emptyProducts").style.display = visible ? "none" : "block";
+}
+searchInput.addEventListener("input",filterProducts);
+document.querySelectorAll("[data-filter]").forEach(button=>{
+  button.addEventListener("click",()=>{
+    activeFilter = button.dataset.filter;
+    document.querySelectorAll("[data-filter]").forEach(item=>item.classList.toggle("active",item===button));
+    filterProducts();
+  });
+});
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* GLOBAL SELL — local prototype with seller-owned CRUD, image upload and product chat */
+(()=>{
+  const STORE_KEY="metagz_global_sell_products_v2";
+  const OWNER_KEY="metagz_global_sell_owner_v1";
+  const CHAT_KEY="metagz_global_sell_chats_v1";
+  const $=id=>document.getElementById(id);
+  if(!$("gsProducts")) return;
+  let filter="all",editingId=null,activeProductId=null,chatTab="message";
+  let ownerId=localStorage.getItem(OWNER_KEY);
+  if(!ownerId){ownerId="mgz_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,9);localStorage.setItem(OWNER_KEY,ownerId);}
+  let products=[],chats={};
+  try{
+    const current=localStorage.getItem(STORE_KEY);
+    if(current!==null){products=JSON.parse(current);if(!Array.isArray(products))products=[];}
+    else {
+      // Migrate products created by the previous local prototype instead of hiding them.
+      products=JSON.parse(localStorage.getItem("metagz_global_sell_products_v1")||"[]");
+      if(!Array.isArray(products))products=[];
+      products=products.map((p,i)=>({...p,id:p.id||("legacy_"+i+"_"+Date.now().toString(36)),ownerId,seller:p.seller||"METAGZ USER",type:p.type||"digital",image:p.image||""}));
+      localStorage.setItem(STORE_KEY,JSON.stringify(products));
+    }
+  }catch(e){products=[];}
+  try{chats=JSON.parse(localStorage.getItem(CHAT_KEY)||"{}");if(!chats||typeof chats!=="object")chats={};}catch(e){chats={};}
+  const save=()=>{try{localStorage.setItem(STORE_KEY,JSON.stringify(products));}catch(e){mgzAlert("Penyimpanan browser penuh. Hapus produk atau gunakan foto lebih kecil.");}};
+  const saveChats=()=>{try{localStorage.setItem(CHAT_KEY,JSON.stringify(chats));}catch(e){mgzAlert("Penyimpanan chat penuh di browser ini.");}};
+  const rupiah=n=>"Rp "+Number(n||0).toLocaleString("id-ID");
+  const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const safeUrl=s=>String(s||"").replace(/[\u0000-\u001f]/g,"");
+  function resetForm(){
+    ["gsTitle","gsPrice","gsDescription","gsWa","gsTelegram"].forEach(id=>$(id).value="");
+    $("gsImage").value="";$("gsImagePreview").src="";$("gsImagePreview").hidden=true;
+    editingId=null;$("gsUpload").innerHTML='<i class="fa-solid fa-cloud-arrow-up"></i> UPLOAD PRODUCT';
+    const title=$("gsTitle");title.closest(".gs-card").querySelector(".gs-section-title").innerHTML='<i class="fa-solid fa-cloud-arrow-up"></i> UPLOAD PRODUK <span>SELLER AREA</span>';
+  }
+  function render(){
+    const q=$("gsSearch").value.trim().toLowerCase();
+    const list=products.filter(p=>(filter==="all"||p.type===filter)&&[p.title,p.description,p.seller].join(" ").toLowerCase().includes(q));
+    $("gsCount").textContent=list.length+" PRODUK";
+    $("gsProducts").innerHTML=list.length?list.slice().reverse().map(p=>{
+      const mine=p.ownerId===ownerId;
+      const icon=p.type==="script"?"fa-code":p.type==="tools"?"fa-screwdriver-wrench":"fa-cube";
+      return `<article class="gs-product" data-product-card="${esc(p.id)}" tabindex="0" role="button" aria-label="Buka chat produk ${esc(p.title)}">
+        ${p.image?`<img class="gs-product-image" src="${p.image}" alt="Foto ${esc(p.title)}">`:`<div class="gs-product-top"><span class="gs-product-icon"><i class="fa-solid ${icon}"></i></span><span class="gs-product-type">${esc((p.type||"digital").toUpperCase())}</span></div>`}
+        ${p.image?`<div class="gs-product-top"><span class="gs-product-icon"><i class="fa-solid ${icon}"></i></span><span class="gs-product-type">${esc((p.type||"digital").toUpperCase())}</span></div>`:""}
+        <h3>${esc(p.title)}</h3><div class="gs-seller"><i class="fa-solid fa-user"></i> ${esc(p.seller||"Seller")}</div>
+        <div class="gs-price">${rupiah(p.price)}</div><div class="gs-desc">${esc(p.description||"Tidak ada deskripsi.")}</div>
+        <div class="gs-rating"><i class="fa-solid fa-star"></i> ${Number(p.rating||5).toFixed(1)} / 5</div>
+        <div class="gs-contact">
+          ${p.wa?`<a href="https://wa.me/${encodeURIComponent(p.wa)}" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WHATSAPP</a>`:""}
+          ${p.telegram?`<a class="telegram" href="https://t.me/${encodeURIComponent(p.telegram.replace(/^@/,""))}" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i> TELEGRAM</a>`:""}
+        </div>
+        ${mine?`<div class="gs-product-actions"><button type="button" class="gs-edit" data-edit-product="${esc(p.id)}"><i class="fa-solid fa-pen"></i> EDIT</button><button type="button" class="gs-delete" data-delete-product="${esc(p.id)}"><i class="fa-solid fa-trash"></i> DELETE</button></div>`:""}
+        <div class="gs-product-actions"><button type="button" data-open-product-chat="${esc(p.id)}"><i class="fa-solid fa-comments"></i> CHAT / KOMENTAR</button></div>
+      </article>`;
+    }).join(""):`<div class="gs-empty"><i class="fa-solid fa-box-open"></i><strong>PRODUK BELUM DITEMUKAN</strong><span>Coba kata kunci lain atau upload produk pertama.</span></div>`;
+  }
+  function detectType(title){return /script|bot|code/i.test(title)?"script":/tool|tools/i.test(title)?"tools":"digital";}
+  function openEdit(id){
+    const p=products.find(x=>x.id===id&&x.ownerId===ownerId);if(!p)return;
+    editingId=id;$("gsTitle").value=p.title;$("gsPrice").value=p.price;$("gsDescription").value=p.description||"";
+    $("gsWa").value=p.wa||"";$("gsTelegram").value=p.telegram||"";
+    $("gsImage").value="";$("gsImagePreview").src=p.image||"";$("gsImagePreview").hidden=!p.image;
+    $("gsUpload").innerHTML='<i class="fa-solid fa-floppy-disk"></i> SIMPAN PERUBAHAN';
+    $("gsTitle").closest(".gs-card").querySelector(".gs-section-title").innerHTML='<i class="fa-solid fa-pen-to-square"></i> EDIT PRODUK <span>SELLER AREA</span>';
+    $("gsTitle").focus();$("global").scrollIntoView({behavior:"smooth",block:"start"});
+  }
+  function deleteProduct(id){
+    const p=products.find(x=>x.id===id&&x.ownerId===ownerId);if(!p)return;
+    const modal=$("mgzModal"),body=$("mgzModalBody"),actions=$("mgzModalActions");
+    $("mgzModalTitle").textContent="HAPUS PRODUK";
+    body.textContent=`Hapus "${p.title}" dari produk milikmu? Tindakan ini tidak bisa dibatalkan.`;
+    actions.innerHTML="";
+    const cancel=document.createElement("button");cancel.textContent="BATAL";cancel.onclick=()=>{modal.classList.remove("open");document.body.classList.remove("modal-open");};
+    const yes=document.createElement("button");yes.className="primary";yes.textContent="HAPUS";yes.onclick=()=>{
+      products=products.filter(x=>x.id!==id);delete chats[id];save();saveChats();modal.classList.remove("open");document.body.classList.remove("modal-open");render();mgzToast("Produk berhasil dihapus.");
+    };
+    actions.append(cancel,yes);modal.classList.add("open");document.body.classList.add("modal-open");
+  }
+  async function readImage(file){
+    if(!file)return "";
+    if(!file.type.startsWith("image/")){mgzAlert("File harus berupa gambar.");return null;}
+    if(file.size>1.5*1024*1024){mgzAlert("Ukuran foto maksimal 1.5 MB untuk versi localStorage.");return null;}
+    return await new Promise(resolve=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>resolve(null);r.readAsDataURL(file);});
+  }
+  $("gsImage").addEventListener("change",async()=>{
+    const data=await readImage($("gsImage").files[0]);
+    if(data){$("gsImagePreview").src=data;$("gsImagePreview").hidden=false;}
+    else if($("gsImage").files.length){$("gsImage").value="";}
+  });
+  $("gsUpload").addEventListener("click",async()=>{
+    const title=$("gsTitle").value.trim(),price=Number($("gsPrice").value),description=$("gsDescription").value.trim();
+    const wa=$("gsWa").value.replace(/[^0-9]/g,""),telegram=$("gsTelegram").value.trim().replace(/^@/,"");
+    if(!title||!Number.isFinite(price)||price<0){mgzAlert("Nama produk dan harga wajib diisi dengan benar.");return;}
+    if(!wa&&!telegram){mgzAlert("Isi minimal satu kontak: WhatsApp atau Telegram.");return;}
+    let imageData=$("gsImagePreview").hidden?"":$("gsImagePreview").src;
+    if($("gsImage").files[0]){imageData=await readImage($("gsImage").files[0]);if(imageData===null)return;}
+    if(editingId){
+      const p=products.find(x=>x.id===editingId&&x.ownerId===ownerId);if(!p){mgzAlert("Produk tidak ditemukan atau bukan milik akun lokal ini.");resetForm();return;}
+      Object.assign(p,{title,price,description,wa,telegram,type:detectType(title),image:imageData||p.image||"",updatedAt:Date.now()});
+      mgzToast("Produk berhasil diperbarui.");
+    }else{
+      products.push({id:"p_"+Date.now().toString(36)+Math.random().toString(36).slice(2,7),ownerId,title,price,description,wa,telegram,seller:"METAGZ USER",type:detectType(title),image:imageData,rating:5,createdAt:Date.now()});
+      mgzToast("Produk berhasil di-upload.");
+    }
+    save();resetForm();render();
+  });
+  $("gsSearch").addEventListener("input",render);
+  document.querySelectorAll("[data-gs-filter]").forEach(btn=>btn.addEventListener("click",()=>{
+    filter=btn.dataset.gsFilter;document.querySelectorAll("[data-gs-filter]").forEach(b=>b.classList.toggle("active",b===btn));render();
+  }));
+  $("gsProducts").addEventListener("click",e=>{
+    const edit=e.target.closest("[data-edit-product]");if(edit){e.stopPropagation();openEdit(edit.dataset.editProduct);return;}
+    const del=e.target.closest("[data-delete-product]");if(del){e.stopPropagation();deleteProduct(del.dataset.deleteProduct);return;}
+    const contact=e.target.closest("a");if(contact)return;
+    const open=e.target.closest("[data-open-product-chat]")||e.target.closest("[data-product-card]");
+    if(open){const id=open.dataset.openProductChat||open.dataset.productCard;openProductChat(id);}
+  });
+  $("gsProducts").addEventListener("keydown",e=>{
+    if((e.key==="Enter"||e.key===" ")&&e.target.matches("[data-product-card]")){e.preventDefault();openProductChat(e.target.dataset.productCard);}
+  });
+  function openProductChat(id){
+    const p=products.find(x=>x.id===id);if(!p)return;activeProductId=id;chatTab="message";
+    $("gsChatTitle").textContent=p.title;
+    $("gsChatProduct").innerHTML=`${p.image?`<img src="${p.image}" alt="">`:`<span class="gs-product-icon"><i class="fa-solid fa-box"></i></span>`}<div><b>${esc(p.title)}</b><small>${rupiah(p.price)} • ${esc(p.seller||"Seller")}</small></div>`;
+    document.querySelectorAll("[data-gschat-tab]").forEach(b=>b.classList.toggle("active",b.dataset.gschatTab==="message"));
+    $("gsChatInput").placeholder="Tulis pesan ke seller...";
+    $("gsChatBackdrop").classList.add("open");$("gsChatBackdrop").setAttribute("aria-hidden","false");renderProductChat();setTimeout(()=>$("gsChatInput").focus(),80);
+  }
+  function renderProductChat(){
+    const all=chats[activeProductId]||[],rows=all.filter(m=>m.kind===chatTab);
+    $("gsChatStream").innerHTML=rows.length?rows.map(m=>`<div class="gs-chat-msg ${m.ownerId===ownerId?"mine":""}"><b>${esc(m.name)}</b><p>${esc(m.text)}</p><time>${new Date(m.time).toLocaleString("id-ID",{hour:"2-digit",minute:"2-digit",day:"2-digit",month:"short"})}</time></div>`).join(""):`<div class="gs-chat-empty"><i class="fa-regular fa-comments"></i><br>${chatTab==="message"?"Belum ada pesan. Mulai chat produk ini.":"Belum ada komentar untuk produk ini."}</div>`;
+    $("gsChatStream").scrollTop=$("gsChatStream").scrollHeight;
+  }
+  document.querySelectorAll("[data-gschat-tab]").forEach(b=>b.addEventListener("click",()=>{
+    chatTab=b.dataset.gschatTab;document.querySelectorAll("[data-gschat-tab]").forEach(x=>x.classList.toggle("active",x===b));
+    $("gsChatInput").placeholder=chatTab==="message"?"Tulis pesan ke seller...":"Tulis komentar produk...";renderProductChat();
+  }));
+  $("gsChatForm").addEventListener("submit",e=>{
+    e.preventDefault();const text=$("gsChatInput").value.trim();if(!text||!activeProductId)return;
+    chats[activeProductId]=chats[activeProductId]||[];
+    chats[activeProductId].push({id:"m_"+Date.now().toString(36),kind:chatTab,text,name:"METAGZ USER",ownerId,time:Date.now()});
+    saveChats();$("gsChatInput").value="";renderProductChat();
+  });
+  function closeProductChat(){$("gsChatBackdrop").classList.remove("open");$("gsChatBackdrop").setAttribute("aria-hidden","true");activeProductId=null;}
+  $("gsChatClose").addEventListener("click",closeProductChat);
+  $("gsChatBackdrop").addEventListener("click",e=>{if(e.target===$("gsChatBackdrop"))closeProductChat();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("gsChatBackdrop").classList.contains("open"))closeProductChat();});
+  render();
+})();
+
+function mgzPrompt(message,title="METAGZ INPUT"){
+ return new Promise(resolve=>{
+  const modal=document.getElementById("mgzModal"),body=document.getElementById("mgzModalBody"),actions=document.getElementById("mgzModalActions");
+  document.getElementById("mgzModalTitle").textContent=title;
+  body.textContent=message;
+  const input=document.createElement("input");input.className="mgz-modal-input";input.placeholder="Ketik di sini...";
+  body.appendChild(input);actions.innerHTML="";
+  const cancel=document.createElement("button");cancel.textContent="BATAL";cancel.onclick=()=>{modal.classList.remove("open");document.body.classList.remove("modal-open");resolve(null);};
+  const ok=document.createElement("button");ok.className="primary";ok.textContent="LANJUT";ok.onclick=()=>{modal.classList.remove("open");document.body.classList.remove("modal-open");resolve(input.value);};
+  actions.append(cancel,ok);modal.classList.add("open");document.body.classList.add("modal-open");setTimeout(()=>input.focus(),80);
+ });
+}
+
+/* METAGZ CUSTOM POPUP */
+function mgzAlert(message,title="METAGZ NOTICE"){
+  const modal=document.getElementById("mgzModal");
+  if(!modal){console.log(message);return;}
+  document.getElementById("mgzModalTitle").textContent=title;
+  document.getElementById("mgzModalBody").textContent=String(message);
+  const actions=document.getElementById("mgzModalActions");actions.innerHTML="";
+  const ok=document.createElement("button");ok.className="primary";ok.textContent="MENGERTI";ok.onclick=()=>{modal.classList.remove("open");document.body.classList.remove("modal-open")};actions.append(ok);
+  modal.classList.add("open");document.body.classList.add("modal-open");
+}
+document.getElementById("mgzModalClose").addEventListener("click",()=>{document.getElementById("mgzModal").classList.remove("open");document.body.classList.remove("modal-open")});
+document.getElementById("mgzModal").addEventListener("click",e=>{if(e.target.id==="mgzModal"){e.currentTarget.classList.remove("open");document.body.classList.remove("modal-open");}});
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape"){
+  const modal=document.getElementById("mgzModal");
+  if(modal.classList.contains("open")){modal.classList.remove("open");document.body.classList.remove("modal-open");}
+  const poll=document.getElementById("groupPollModal");
+  if(poll?.classList.contains("open")){poll.classList.remove("open");poll.setAttribute("aria-hidden","true");}
+  const preview=document.getElementById("chatPreviewModal");
+  if(preview?.classList.contains("open")){preview.classList.remove("open");preview.setAttribute("aria-hidden","true");}
+ }
+});
+window.alert=(message)=>mgzAlert(message);
+function mgzToast(message){
+ const t=document.getElementById("mgzToast");t.textContent=message;t.classList.add("show");clearTimeout(window.__mgzToastTimer);window.__mgzToastTimer=setTimeout(()=>t.classList.remove("show"),2400);
+}
+
+/* GROUP — localStorage prototype, prepared for Node.js/WebSocket migration */
+(()=>{
+ const KEY="metagz_group_messages_v2", $=id=>document.getElementById(id);
+ const box=$("chatMessages"); if(!box)return;
+ let messages=[]; try{messages=JSON.parse(localStorage.getItem(KEY)||"[]");if(!Array.isArray(messages))messages=[];}catch(e){messages=[];}
+ let replyTarget=null,recorder=null,recordChunks=[],recordStarted=0,recordTimer=null,pendingMedia=[];
+ const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ const time=t=>new Date(t).toLocaleTimeString("id-ID",{hour:"2-digit",minute:"2-digit"});
+ const duration=s=>`${String(Math.floor(s/60)).padStart(2,"0")}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+ function persist(){try{localStorage.setItem(KEY,JSON.stringify(messages));}catch(e){mgzAlert("Penyimpanan browser penuh. Hapus media/pesan lama atau gunakan file lebih kecil.");}}
+ function wave(seed){let n=0;return Array.from({length:38},(_,i)=>{n=(Math.sin((i+1)*(seed%17+3))*9999)%1;let h=5+Math.abs(n)*22;return `<i style="height:${h.toFixed(0)}px"></i>`;}).join("");}
+ function audioCard(m){
+   const id="aud_"+m.id;
+   return `<div class="chat-msg-audio-card" data-audio-card="${id}">
+     <button class="chat-audio-play" type="button" data-audio-play="${id}"><i class="fa-solid fa-play"></i></button>
+     <div class="chat-audio-main"><div class="chat-wave" data-wave="${id}">${wave(m.id.length)}</div><div class="chat-audio-meta"><span data-audio-current="${id}">VOICE MESSAGE</span><span data-audio-duration="${id}">${duration(m.duration||0)}</span></div></div>
+     <audio preload="metadata" src="${m.data}" data-audio="${id}" hidden></audio>
+   </div>`;
+ }
+ function render(){
+  if(!messages.length){box.innerHTML='<div class="chat-empty"><i class="fa-solid fa-comments"></i><b>WELCOME TO GROUP</b><br>Mulai percakapan pertama di sini.</div>';return;}
+  box.innerHTML=messages.map(m=>{
+   let body="";
+   if(m.reply)body+=`<div class="chat-msg-reply"><b>↪ ${esc(m.reply.name)}</b>${esc(m.reply.text)}</div>`;
+   if(m.kind==="image")body+=`<img class="chat-msg-media" src="${m.data}" alt="Foto di GROUP">`;
+   if(m.kind==="video")body+=`<video class="chat-msg-media" src="${m.data}" controls playsinline preload="metadata"></video>`;
+   if(m.kind==="audio")body+=audioCard(m);
+   if(m.kind==="poll"){
+    const choices=m.voterChoice||{};
+    const total=Object.keys(choices).length;
+    body+=`<div class="chat-poll"><div class="chat-poll-title"><i class="fa-solid fa-square-poll-vertical"></i> ${esc(m.question)}</div>${(m.options||[]).map((o,i)=>{
+      const count=Object.values(choices).filter(v=>Number(v)===i).length;
+      const pct=total?Math.round(count/total*100):0;
+      return `<button type="button" class="chat-poll-option ${choices["local-device"]===i?"voted":""}" data-vote="${m.id}:${i}"><span>${esc(o)}</span><span class="poll-percent">${count} suara · ${pct}%</span></button>`;
+    }).join("")}<small style="display:block;margin-top:.4rem;color:#777;font-size:.55rem">${total} SUARA • PILIHAN BISA DIUBAH</small></div>`;
+  }
+   if(m.kind==="text")body+=`<div class="chat-msg-text">${esc(m.text).replace(/(^|\\s)@([a-zA-Z0-9_]{2,32})/g,'$1<span class="mention">@$2</span>')}</div>`;
+   if(m.caption)body+=`<div class="chat-msg-caption">${esc(m.caption)}</div>`;
+   return `<article class="chat-message ${m.mine?"mine":""}" id="msg_${m.id}"><div class="chat-msg-meta"><span class="chat-msg-name">${esc(m.name||"YOU")}</span><span class="chat-msg-time">${time(m.time)}</span></div>${body}</article>`;
+  }).join("");
+
+  let swipeStart=null;
+  box.addEventListener("pointerdown",e=>{
+    const bubble=e.target.closest(".chat-message");
+    if(!bubble||e.target.closest("button,video,audio,input,textarea")){swipeStart=null;return;}
+    swipeStart={id:bubble.id.replace(/^msg_/,""),x:e.clientX,y:e.clientY,pointerId:e.pointerId,bubble};
+  },{passive:true});
+  box.addEventListener("pointerup",e=>{
+    if(!swipeStart||swipeStart.pointerId!==e.pointerId)return;
+    const dx=e.clientX-swipeStart.x,dy=e.clientY-swipeStart.y,bubble=swipeStart.bubble,id=swipeStart.id;
+    swipeStart=null;
+    if(dx < -52 && Math.abs(dx)>Math.abs(dy)*1.25){
+      bubble.classList.add("swipe-reply");
+      setTimeout(()=>bubble.classList.remove("swipe-reply"),220);
+      setReply(messages.find(m=>m.id===id));
+    }
+  },{passive:true});
+  box.addEventListener("pointercancel",()=>{swipeStart=null;},{passive:true});
+
+  box.querySelectorAll("[data-vote]").forEach(b=>b.addEventListener("click",()=>{
+   const split=b.dataset.vote.lastIndexOf(":");
+   const id=b.dataset.vote.slice(0,split),idx=Number(b.dataset.vote.slice(split+1));
+   const m=messages.find(x=>x.id===id);if(!m||!Number.isInteger(idx)||idx<0||idx>=m.options.length)return;
+   m.voterChoice=m.voterChoice||{};
+   if(m.voterChoice["local-device"]===idx){mgzToast("Pilihan kamu sudah tercatat.");return;}
+   m.voterChoice["local-device"]=idx;persist();render();mgzToast("Suara berhasil diperbarui.");
+  }));
+  box.querySelectorAll("[data-audio-play]").forEach(btn=>btn.addEventListener("click",()=>{
+   const id=btn.dataset.audioPlay,audio=box.querySelector(`[data-audio="${id}"]`);if(!audio)return;
+   if(audio.paused){box.querySelectorAll("audio[data-audio]").forEach(a=>{if(a!==audio)a.pause();});audio.play().catch(()=>mgzToast("Audio tidak dapat diputar."));}
+   else audio.pause();
+  }));
+  box.querySelectorAll("audio[data-audio]").forEach(audio=>{
+   const id=audio.dataset.audio;
+   const update=()=>{
+    const btn=box.querySelector(`[data-audio-play="${id}"]`),current=box.querySelector(`[data-audio-current="${id}"]`),dur=box.querySelector(`[data-audio-duration="${id}"]`),bars=box.querySelector(`[data-wave="${id}"]`);
+    if(btn)btn.innerHTML=`<i class="fa-solid fa-${audio.paused?"play":"pause"}"></i>`;
+    if(current)current.textContent=duration(audio.currentTime||0);
+    if(dur&&Number.isFinite(audio.duration))dur.textContent=duration(audio.duration);
+    if(bars){const pct=audio.duration?audio.currentTime/audio.duration:0;[...bars.children].forEach((bar,i)=>bar.classList.toggle("played",i<Math.floor(pct*bars.children.length)));}
+   };
+   audio.addEventListener("timeupdate",update);audio.addEventListener("play",update);audio.addEventListener("pause",update);audio.addEventListener("ended",update);
+   const bars=box.querySelector(`[data-wave="${id}"]`);if(bars)bars.addEventListener("click",e=>{if(!audio.duration)return;const r=bars.getBoundingClientRect();audio.currentTime=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))*audio.duration;});
+   update();
+  });
+  box.scrollTop=box.scrollHeight;
+ }
+ function add(m){messages.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),time:Date.now(),mine:true,name:"YOU",...m});persist();render();}
+ function setReply(m){if(!m)return;replyTarget={id:m.id,name:m.name||"YOU",text:m.text||m.caption||(m.kind==="audio"?"Voice note":m.kind==="image"?"Foto":m.kind==="video"?"Video":m.kind==="poll"?(m.question||"Polling"):"Pesan")};$("chatReplyText").textContent=replyTarget.name+": "+replyTarget.text;$("chatReplying").hidden=false;$("chatInput").focus();}
+ function cancelReply(){replyTarget=null;$("chatReplying").hidden=true;}
+ $("chatCancelReply").addEventListener("click",cancelReply);
+ function sendText(){const input=$("chatInput"),v=input.value.trim();if(!v)return;add({kind:"text",text:v,reply:replyTarget?{...replyTarget}:null});input.value="";input.style.height="auto";cancelReply();input.focus();}
+ $("chatSendBtn").addEventListener("click",sendText);
+ $("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendText();}});
+ $("chatInput").addEventListener("input",e=>{e.target.style.height="auto";e.target.style.height=Math.min(e.target.scrollHeight,112)+"px";});
+ $("chatAttachBtn").addEventListener("click",()=>$("chatFileInput").click());
+ function closePreview(){ $("chatPreviewModal").classList.remove("open");$("chatPreviewContent").innerHTML="";$("chatMediaCaption").value="";pendingMedia=[];}
+ $("chatPreviewClose").addEventListener("click",closePreview);$("chatPreviewCancel").addEventListener("click",closePreview);
+ $("chatFileInput").addEventListener("change",async e=>{
+  pendingMedia=[];
+  for(const f of [...e.target.files]){
+   if(!f.type.startsWith("image/")&&!f.type.startsWith("video/"))continue;
+   if(f.size>1.5*1024*1024){mgzAlert("Maksimal 1.5 MB per media untuk localStorage prototype.");continue;}
+   const data=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(f);});
+   pendingMedia.push({kind:f.type.startsWith("video/")?"video":"image",data,name:f.name});
+  }
+  e.target.value="";if(!pendingMedia.length)return;
+  $("chatPreviewContent").innerHTML=pendingMedia.map(m=>m.kind==="image"?`<img src="${m.data}" alt="Preview foto">`:`<video src="${m.data}" controls playsinline></video>`).join("");
+  $("chatPreviewModal").classList.add("open");
+ });
+ $("chatPreviewSend").addEventListener("click",()=>{
+  const caption=$("chatMediaCaption").value.trim(),reply=replyTarget?{...replyTarget}:null;
+  pendingMedia.forEach(m=>add({...m,caption,reply,text:m.name}));
+  cancelReply();closePreview();mgzToast("Media berhasil dikirim ke GROUP.");
+ });
+ $("chatTagBtn").addEventListener("click",()=>{const i=$("chatInput");i.value+=(i.value?" ":"")+"@";i.focus();});
+ const pollModal=$("groupPollModal"),pollForm=$("groupPollForm");
+ function closePollModal(){pollModal.classList.remove("open");pollModal.setAttribute("aria-hidden","true");}
+ $("chatPollBtn").addEventListener("click",()=>{
+  $("groupPollQuestion").value="";$("groupPollOptions").value="";
+  pollModal.classList.add("open");pollModal.setAttribute("aria-hidden","false");
+  setTimeout(()=>$("groupPollQuestion").focus(),80);
+ });
+ $("groupPollClose").addEventListener("click",closePollModal);
+ $("groupPollCancel").addEventListener("click",closePollModal);
+ pollModal.addEventListener("click",e=>{if(e.target===pollModal)closePollModal();});
+ pollForm.addEventListener("submit",e=>{
+  e.preventDefault();
+  const question=$("groupPollQuestion").value.trim();
+  const options=$("groupPollOptions").value.split(/\n|,/).map(v=>v.trim()).filter(Boolean);
+  if(question.length<3){mgzAlert("Pertanyaan polling minimal 3 karakter.");return;}
+  if(options.length<2){mgzAlert("Masukkan minimal 2 pilihan jawaban.");return;}
+  if(options.length>8){mgzAlert("Polling maksimal memiliki 8 pilihan.");return;}
+  if(new Set(options.map(v=>v.toLowerCase())).size!==options.length){mgzAlert("Pilihan polling tidak boleh duplikat.");return;}
+  add({kind:"poll",question,options,voterChoice:{},text:"",reply:replyTarget?{...replyTarget}:null});
+  cancelReply();closePollModal();mgzToast("Polling berhasil dibuat.");
+ });
+ $("chatInfoBtn").addEventListener("click",()=>mgzAlert("GROUP\nRuang percakapan komunitas METAGZ.\n\nPrototype ini menyimpan pesan di localStorage browser. Setelah tampilan final, data akan dipindahkan ke backend Node.js dan database.","GROUP INFO"));
+ $("chatVoiceBtn").addEventListener("click",async()=>{
+  if(recorder&&recorder.state==="recording"){recorder.stop();return;}
+  if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){mgzAlert("Browser belum mendukung voice note. Gunakan Chrome terbaru melalui HTTPS.");return;}
+  try{
+   const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
+   const mime=["audio/webm;codecs=opus","audio/webm","audio/ogg;codecs=opus"].find(t=>MediaRecorder.isTypeSupported(t));
+   recorder=mime?new MediaRecorder(stream,{mimeType:mime}):new MediaRecorder(stream);recordChunks=[];recordStarted=Date.now();
+   recorder.ondataavailable=e=>{if(e.data.size)recordChunks.push(e.data);};
+   recorder.onstop=()=>{
+    const elapsed=Math.max(1,Math.round((Date.now()-recordStarted)/1000)),blob=new Blob(recordChunks,{type:recorder.mimeType||"audio/webm"});
+    stream.getTracks().forEach(t=>t.stop());recorder=null;clearInterval(recordTimer);
+    $("chatVoiceBtn").innerHTML='<i class="fa-solid fa-microphone"></i>';$("chatRecordStatus").textContent="";
+    if(blob.size>1.5*1024*1024){mgzAlert("Voice note melebihi 1.5 MB. Rekam lebih singkat untuk prototype lokal.");return;}
+    const r=new FileReader();r.onload=()=>{add({kind:"audio",data:r.result,duration:elapsed,caption:"",reply:replyTarget?{...replyTarget}:null,text:"Voice note"});cancelReply();mgzToast("Voice note terkirim.");};r.readAsDataURL(blob);
+   };
+   recorder.start(250);$("chatVoiceBtn").innerHTML='<i class="fa-solid fa-stop"></i>';$("chatRecordStatus").textContent="● REC 00:00";
+   recordTimer=setInterval(()=>{$("chatRecordStatus").textContent="● REC "+duration((Date.now()-recordStarted)/1000);},250);
+  }catch(e){mgzAlert("Izin mikrofon ditolak atau mikrofon tidak tersedia.");}
+ });
+ render();
+})();
+
+/* Hindari navbar ikut terdorong ke atas saat keyboard Android terbuka.
+   Navbar disembunyikan sementara ketika field input fokus, lalu muncul lagi setelah selesai mengetik. */
+(()=>{
+ const isMobile=()=>window.matchMedia("(max-width: 47.5rem)").matches;
+ document.addEventListener("focusin",e=>{if(isMobile()&&e.target.matches("input,textarea,select,[contenteditable=true]"))document.body.classList.add("keyboard-open");});
+ document.addEventListener("focusout",e=>{if(e.target.matches("input,textarea,select,[contenteditable=true]"))setTimeout(()=>{if(!document.activeElement?.matches("input,textarea,select,[contenteditable=true]"))document.body.classList.remove("keyboard-open");},180);});
+ if(window.visualViewport){window.visualViewport.addEventListener("resize",()=>{if(!isMobile())document.body.classList.remove("keyboard-open");});}
+})();
+
+</script>
+</body>
+</html>
